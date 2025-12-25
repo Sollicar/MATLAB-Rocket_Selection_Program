@@ -1,16 +1,14 @@
 function Project_costCal_SolWeb(payload, avaRocketsMat, avaRockets, orbit)
 
-%<SM:PDF_PARAM:Webster>          %<SM:PDF_RETURN:Webster>
-
 if strcmpi(orbit, "LEO")
-    costVector = avaRocketsMat(:,5) ./ payload; %<SM:SLICE:Webster>
+    costVector = avaRocketsMat(:,5) ./ payload; 
 else
-    costVector = avaRocketsMat(:,6) ./ payload; %<SM:ANALYZE:Webster>
+    costVector = avaRocketsMat(:,6) ./ payload; 
 end
 
 numRockets = size(avaRocketsMat,1);
 if numRockets > 1
-    rocketNames = avaRockets(2:end,1); %<SM:REF:Webster>
+    rocketNames = avaRockets(2:end,1); 
 else
     rocketNames = avaRockets(2,1);
 end
@@ -19,7 +17,7 @@ subplot(3,1,1);
 if numRockets == 1
     bar(costVector, 'b');
 else
-    plot(costVector,'LineWidth',3, 'Color', 'Blue', 'Marker','o'); %<SM:PLOT:Sollis>
+    plot(costVector,'LineWidth',3, 'Color', 'Blue', 'Marker','o'); 
 end
 ylabel('Cost per Pound ($)');
 title('Launch Cost per Rocket');
@@ -31,14 +29,14 @@ grid on;
 reliability = avaRocketsMat(:,9);
 subplot(3,1,2);
 if numRockets == 1
-    bar(reliability, 'G'); %<SM:PLOT:Webster>
+    bar(reliability, 'G'); 
 else
     plot(reliability,'LineWidth',3);
 end
 ylabel('% Successful');
 ylim([95 100]);
 title('Reliability of Rockets (Success/Launch total)');
-xticks(1:numRockets); %<SM:BUILT-FUNC:Webster>
+xticks(1:numRockets); 
 xticklabels(rocketNames);
 grid on;
 
@@ -57,4 +55,4 @@ xticklabels(rocketNames);
 grid on;
 %%
 rocketGraphData = table(rocketNames, costVector, reliability, launches, 'VariableNames', {'Rocket','CostPerPound','Reliability','Launches'});
-writetable(rocketGraphData, 'RocketGraphData.csv'); %<SM:WRITE:Webster>
+writetable(rocketGraphData, 'RocketGraphData.csv');

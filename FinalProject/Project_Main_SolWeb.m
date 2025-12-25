@@ -1,59 +1,10 @@
 % ------------------------------------------------------------------------
-%   Name: Carson Sollis and Seth Webster
-%   Section: 11:15am Tue/Thur
-%   Submission Date: 12/2/25
+%   Name: Carson Sollis
 %
 %   File Description: [This main file will take the input of the user and save them all to variables and then it will get a cell and matrix back from the function and
 % it will then tell the user which rockets they can use. the other function will also generated 3 graphs giving visual representation of the rockets cost per pound of payload, realability, 
 % and total launches. The user will then select a rocket and it will give them the data abouit that rocket in the form of a fprintf]
 %
-%
-%   Citation: [Include any and all links of online resources that you
-%   utilized within your file. Provide line numbers of where the code
-%   can be found within your file. If a person aided you with your code, 
-%   provide their full name and line numbers of what you were aided with
-%   it. Example shown below
-% 
-%                        Resources  |  Line Number
-%                 Matlab Help pages |  13-14, 23-24 
-%                            Matlab |  33-34
-%            
-%
-%               Score Marker    |  Line Number  | File Name
-%            %<SM:ROP:Sollis>   |  73           | Project_Main_SolWeb.m 
-%            %<SM:BOP:Sollis>   |  79           | Project_Main_SolWeb.m
-%            %<SM:IF:Sollis>    |  71           | Project_Main_SolWeb.m
-%            %<SM:FOR:Sollis>   |  13           | Project_AccRockets_SolWeb.m
-%            %<SM:WHILE:Sollis> |  67           | Project_Main_SolWeb.m 
-%        %<SM:BUILT-FUNC:Sollis>|  101          | Project_Main_SolWeb.m 
-%            %<SM:PDF:Sollis>   |  104          | Project_Main_SolWeb.m
-%         %<SM:PDF_PARAM:Sollis>|  1            | Project_AccRockets_SolWeb.m
-%        %<SM:PDF_RETURN:Sollis>|  1            | Project_AccRockets_SolWeb.m
-%            %<SM:READ:Sollis>  |  6            | Project_AccRockets_SolWeb.m
-%            %<SM:STRING:Sollis>|  140          | Project_Main_SolWeb.m
-%            %<SM:SLICE:Sollis> |  11           | Project_AccRockets_SolWeb.m
-%            %<SM:AUG:Sollis>   |  16           | Project_AccRockets_SolWeb.m
-%            %<SM:PLOT:Sollis>  |  22           | Project_costCal_SolWeb.m
-%            %<SM:FILTER:Sollis>|  16           | Project_AccRockets_SolWeb.m
-%           %<SM:ADD-REM:Sollis>|  17           | Project_AccRockets_SolWeb.m
-
-
-%            %<SM:ROP:Webster>  |  86           | Project_Main_SolWeb.m
-%            %<SM:BOP:Webster>  |  92           | Project_Main_SolWeb.m 
-%            %<SM:IF:Webster>   |  107          | Project_Main_SolWeb.m 
-%            %<SM:FOR:Webster>  |  118          | Project_Main_SolWeb.m 
-%            %<SM:WHILE:Webster>|  115          | Project_Main_SolWeb.m 
-%       %<SM:BUILT-FUNC:Webster>|  41           | Project_costCal_SolWeb.m 
-%            %<SM:PDF:Webster>  |  105          | Project_Main_SolWeb.m 
-%        %<SM:PDF_PARAM:Webster>|  1            | Project_costCal_SolWeb.m 
-%       %<SM:PDF_RETURN:Webster>|  1            | Project_costCal_SolWeb.m
-%            %<SM:WRITE:Webster>|  60           | Project_costCal_SolWeb.m
-%           %<SM:STRING:Webster>|  119          | Project_Main_SolWeb.m 
-%            %<SM:SLICE:Webster>|  6            | Project_costCal_SolWeb.m
-%            %<SM:REF:Webster>  |  13           | Project_costCal_SolWeb.m
-%            %<SM:PLOT:Webster> |  34           | Project_costCal_SolWeb.m
-%            %<SM:SORT:Webster> |  38           | Project_AccRockets_SolWeb.m
-%          %<SM:ANALYZE:Webster>|  8            | Project_costCal_SolWeb.m
  
 clear % useful to clear your workspace and use new variables
 clc %always clear screens before youu start
@@ -67,47 +18,47 @@ fprintf('Hello welcome to our Rocket Selection Program!\n')
 
 orbit = input('\nWhat is the desired orbit? (LEO, GEO, Lunar, Mars): ', 's');
 validOrbits = ["LEO", "GEO", "Lunar", "Mars"];
-while isempty(orbit) || ~any(strcmpi(orbit, validOrbits)) %<SM:WHILE:Sollis>
+while isempty(orbit) || ~any(strcmpi(orbit, validOrbits))
      fprintf('\nError must 1 of 4 orbits: (LEO, GEO, Lunar, Mars) \n')
      orbit = input('\nWhat is the desired orbit? (LEO, GEO, Lunar, Mars): ', 's');
 end
 if strcmpi(orbit, "LEO") %<SM:IF:Sollis>
 payload= input('\nPlease input payload weight in lbs (Between 0 and 290,000): ');
-while isempty(payload) || payload <= 0 || payload > 290000  %<SM:ROP:Sollis>
+while isempty(payload) || payload <= 0 || payload > 290000  
     fprintf('\nError must input a positive number not bigger than 290,000 \n')
     payload= input('\nPlease input payload weight in lbs (Between 0 and 290,000): ');
 end
 else
 payload= input('\nPlease input payload weight in lbs (Between 0 and 59,500): ');
-while isempty(payload) || payload <= 0 || payload > 59500 %<SM:BOP:Sollis>
+while isempty(payload) || payload <= 0 || payload > 59500 
     fprintf('\nError must input a positive number not bigger than 59,500 \n')
     payload= input('\nPlease input payload weight in lbs (Between 0 and 59,500): ');
 end
 end
 
 payDia = input('\nWhat is the diameter of your payload? (Between 0 and 27.6 ft): ');
-while isempty(payDia) || payDia <= 0 ||payDia > 27.6 %<SM:ROP:Webster>
+while isempty(payDia) || payDia <= 0 ||payDia > 27.6 
     fprintf('\nError must input a number between 0 and 27.6 \n')
     payDia = input('\nWhat is the diameter of your payload? (Between 0 and 27.6 ft): ');
 end
 
 payHeight = input('\nWhat is the height of your payload? (Between 0 and 90 ft): ');
-while isempty(payHeight) || payHeight <= 0 || payHeight > 90 %<SM:BOP:Webster>
+while isempty(payHeight) || payHeight <= 0 || payHeight > 90 
     fprintf('\nError must input a number between 0 and 90 \n')
     payHeight = input('\nWhat is the height of your payload? (Between 0 and 90 ft): ');
 end
 
 fuelType = input('\nWhat type of fuel would you like? (Methalox, Hydrolox, Kerolox, Nopref): ', 's');
 validFuel = ["Methalox","Hydrolox","Kerolox","Nopref"];
-while isempty(fuelType) || ~any(strcmpi(fuelType, validFuel)) %<SM:BUILT-FUNC:Sollis>
+while isempty(fuelType) || ~any(strcmpi(fuelType, validFuel)) 
      fprintf('\nError must 1 of 4 Fuels: (Methalox, Hydrolox, Kerolox, Nopref) \n')
      fuelType = input('What type of fuel would you like? (Methalox, Hydrolox, Kerolox, Nopref): ', 's');
 end
 %%
 [avaRockets, avaRocketsMat] = Project_AccRockets_SolWeb(payload, payDia, payHeight, orbit, fuelType); %<SM:PDF:Sollis>
-Project_costCal_SolWeb(payload, avaRocketsMat, avaRockets, orbit); %<SM:PDF:Webster>
+Project_costCal_SolWeb(payload, avaRocketsMat, avaRockets, orbit); 
 
-if size(avaRockets,1) == 2 %<SM:IF:Webster>
+if size(avaRockets,1) == 2 
     rocketChoice = avaRockets(2,:);
     rocketChoiceMat = avaRocketsMat(1,:);
     fprintf('\nOnly one rocket will work for you, selecting it.\n')
@@ -115,11 +66,11 @@ else
     rocketChoice = [];
     rocketChoiceMat = [];
     
-    while isempty(rocketChoice) %<SM:WHILE:Webster>
+    while isempty(rocketChoice)
         choice = input('Out of these rockets which would you like to chose (Name of rocket)? ', 's');
         
-        for i = 2:size(avaRockets,1) %<SM:FOR:Webster>
-            if strcmpi(choice, avaRockets{i,1}) %<SM:STRING:Webster>
+        for i = 2:size(avaRockets,1)
+            if strcmpi(choice, avaRockets{i,1})
                 rocketChoice = avaRockets(i,:);
                 rocketChoiceMat = avaRocketsMat(i-1,:);
             end
@@ -140,7 +91,7 @@ elseif strcmp(rocketChoice{1,14}, "FG")
     location = 'French Guiana';
 elseif strcmp(rocketChoice{1,14}, "Kaz")
     location = 'Kazakhstan';
-elseif strcmp(rocketChoice{1,14}, "WalNZ") %<SM:STRING:Sollis>
+elseif strcmp(rocketChoice{1,14}, "WalNZ") 
     location = 'New Zealand';
 end
 if strcmpi(orbit, "LEO")
